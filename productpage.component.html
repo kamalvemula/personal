@@ -1,0 +1,217 @@
+<div class="row">
+  <div class="col-sm-2">
+    <div class="sidebar shadow">
+
+      <h4 class="active">Filters </h4>
+      <hr>
+      <!-- <form [formGroup]="form" (submit)="submit(form.value)">
+        <div *ngFor="let skill of skills.controls; let i=index">
+         <input type="checkbox" [formControl]="skill"/> {{user.skills[i].name}}
+        </div>
+        <button type="submit">Submit</button>
+       </form> -->
+      <mat-card>
+        <h5>Screen Size</h5>
+        <hr>
+        <mat-checkbox (change)="onScreensizeChange($event, '5')">5 inches</mat-checkbox><br/>
+        <mat-checkbox (change)="onScreensizeChange($event, '5.5')">5.5 inches</mat-checkbox><br/>
+        <mat-checkbox (change)="onScreensizeChange($event, '6')">6 inches</mat-checkbox><br/>
+      </mat-card>
+      <mat-card>
+        <h5>Brand</h5>
+        <hr>
+        <mat-checkbox (change)="onBrandChange($event, 'Oneminus')">One Minus</mat-checkbox><br/>
+        <mat-checkbox (change)="onBrandChange($event, 'Pineapple')">PineApple</mat-checkbox><br/>
+        <mat-checkbox (change)="onBrandChange($event, 'Ziaomi')">Ziaomi</mat-checkbox><br/>
+        <mat-checkbox (change)="onBrandChange($event, 'samsing')">Samsing</mat-checkbox><br/>
+        <mat-checkbox (change)="onBrandChange($event, 'mokia')">Mokia</mat-checkbox><br/>
+        <mat-checkbox (change)="onBrandChange($event, 'kinovo')">Kinovo</mat-checkbox><br/>
+      </mat-card>
+      <mat-card>
+        <h5>Price</h5>
+        <hr>
+        <mat-checkbox (change)="onPriceChange($event, '1')">
+          < <i class="fas fa-rupee-sign"></i>5000 </mat-checkbox><br/>
+        <mat-checkbox (change)="onPriceChange($event, '2')"><i class="fas fa-rupee-sign"></i>5000 - <i class="fas fa-rupee-sign"></i>10000</mat-checkbox><br/>
+        <mat-checkbox (change)="onPriceChange($event, '3')"><i class="fas fa-rupee-sign"></i>10000 - <i class="fas fa-rupee-sign"></i>50000</mat-checkbox><br/>
+        <mat-checkbox (change)="onPriceChange($event, '4')">> <i class="fas fa-rupee-sign"></i>50000 </mat-checkbox><br/>
+      </mat-card>
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- <div class="sidebar">
+      
+
+    </div> -->
+
+  <div class="col-sm-9" style="padding-top: 80px;">
+
+
+    <div *ngIf="filter || filter1 || filter2">
+      <div *ngIf="isProductLoaded">
+        <div data-aos="fade-left" data-aos-duration="1000" data-aos-mirror="true" data-aos-once="false" *ngFor="let prod of displayProduct"
+          class="table table-hover">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+
+                <mat-card class="example-card">
+                  <div [routerLink]="['product', prod.productId]">
+                    <div class="row">
+                      <div class="col-sm-3">
+
+                        <!-- <mat-card class="example-card1"> -->
+
+
+                        <div class="panel-body">
+
+                          <div *ngIf="(prod.image)">
+                            <img src="data:image/jpeg;base64,{{prod.image}}" style="width:100px;height:160px;" alt="Uploaded">
+                          </div>
+                          <div *ngIf="!prod.image">
+                            <img src="url1" style="width:100px;height:160px;" alt="Uploaded Image1">
+                          </div>
+
+                        </div>
+
+                        <!-- </mat-card> -->
+
+                      </div>
+
+
+                      <div class="col-sm-1">
+                      </div>
+                      <div class="col-sm-5">
+
+                        <!-- Brand Name: {{prod.brand.name}}<br/> -->
+
+
+                        <!-- Model Name: -->
+                        <h5> {{ prod.productName}} </h5>
+
+
+
+                        <ul style="list-style-type:disc">
+                          <li>Camera Resolution:{{prod.camera}}</li>
+                          <!-- <li>Memory Speed:{{prod.memorySpeed}}</li> -->
+                          <li>Battery Power:{{prod.battery}}</li>
+                          <li>Display Size:{{prod.screenSize}} inches</li>
+                        </ul>
+
+
+                      </div>
+                      <div class="col-sm-1">
+                      </div>
+                      <div class="col-sm-2">
+                        <!-- Id:{{prod.productId}}<br> Price: -->
+                        <h4 style="color:rgb(150, 0,0)" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                          <i class="fas fa-rupee-sign"></i>{{prod.price}} </h4>
+                        3.5<i class="fas fa-star"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!(filter || filter1 || filter2)">
+      <div *ngIf="isProductLoaded">
+        <div data-aos="fade-left" data-aos-duration="1000" data-aos-mirror="true" data-aos-once="false" *ngFor="let prod of products"
+          class="table table-hover">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+
+                <mat-card class="example-card">
+                  <div [routerLink]="['product', prod.productId]">
+                    <div class="row">
+                      <div class="col-sm-3">
+
+
+
+
+                        <div class="panel-body">
+
+                          <div *ngIf="(prod.image)">
+                            <img src="data:image/jpeg;base64,{{prod.image}}" style="width:100px;height:160px;" alt="Uploaded">
+                          </div>
+                          <div *ngIf="!prod.image">
+                            <img [src]="url1" style="width:200px;height:200px;" alt="Uploaded1">
+                          </div>
+                        </div>
+
+
+                      </div>
+
+
+                      <div class="col-sm-1">
+                      </div>
+                      <div class="col-sm-5">
+
+
+
+
+
+                        <h5> {{ prod.productName}} </h5>
+
+
+                        <ul style="list-style-type:disc">
+                          <li>Camera Resolution:{{prod.camera}}</li>
+
+                          <li>Battery Power:{{prod.battery}}</li>
+                          <li>Display Size:{{prod.screenSize}} inches</li>
+                        </ul>
+
+
+                      </div>
+                      <div class="col-sm-1">
+                      </div>
+                      <div class="col-sm-2">
+
+                        <h4 style="color:rgb(150, 0,0)" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                          <i class="fas fa-rupee-sign"></i>{{prod.price}} </h4>
+                        3.5<i class="fas fa-star"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div align="center" *ngIf="!isProductLoaded" >
+
+      <mat-spinner></mat-spinner><br>
+      <h3>Loading Products.. Please wait...</h3>
+    </div>
+    
+    <div align="center" *ngIf="noItems">
+
+      <br><br><br>
+      <h3>No Search Result</h3>
+    </div>
+  </div>
+
+</div>
+<router-outlet></router-outlet>
